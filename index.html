@@ -3,76 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monitor Dolar Chile</title>
     <link rel="stylesheet" href="styles.css">
+    <title>Monitor Dolar Chile</title>
     <style>
+        /* Improved CSS Styles for Responsive Design */
         body {
             font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
             margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
+            padding: 20px;
         }
         header {
-            background: #35424a;
-            color: #ffffff;
-            padding: 20px;
             text-align: center;
+            padding: 20px;
+            background-color: #007bff;
+            color: white;
+            border-radius: 8px;
+            transition: background-color 0.3s;
         }
-        main {
-            margin: 20px;
+        header:hover {
+            background-color: #0056b3;
         }
-        .responsive-table {
-            width: 100%;
-            border-collapse: collapse;
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+        .loading {
+            text-align: center;
             margin: 20px 0;
         }
-        .responsive-table th, 
-        .responsive-table td {
-            padding: 10px;
-            border: 1px solid #dddddd;
-            text-align: left;
-        }
-        .responsive-table tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
         @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
             header {
-                font-size: 24px;
+                font-size: 1.2em;
             }
-            main {
-                margin: 10px;
+            .container {
+                padding: 10px;
             }
-            .responsive-table th, 
-            .responsive-table td {
-                padding: 5px;
-            }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .fade-in {
-            animation: fadeIn 2s;
         }
     </style>
 </head>
 <body>
     <header>
         <h1>Monitor Dolar Chile</h1>
+        <p>Stay updated with the latest dollar rates.</p>
     </header>
-    <main class="fade-in">
-        <table class="responsive-table">
-            <thead>
-                <tr>
-                    <th>Currency</th>
-                    <th>Value</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Data rows will go here -->
-            </tbody>
-        </table>
-    </main>
+    <div class="container">
+        <div class="loading" id="loading" style="display:none;">Loading...</div>
+        <div class="error" id="error" style="display:none;">Error occurred. Please try again later.</div>
+        <div id="dollar-rates">
+            <!-- Dollar rates will be displayed here -->
+        </div>
+    </div>
+    <script>
+        // Example Javascript for enhanced UI and UX 
+        document.addEventListener('DOMContentLoaded', function() {
+            const loadingDiv = document.getElementById('loading');
+            const errorDiv = document.getElementById('error');
+            const ratesDiv = document.getElementById('dollar-rates');
+
+            function fetchDollarRates() {
+                loadingDiv.style.display = 'block';
+                errorDiv.style.display = 'none';
+                // Simulating an API call
+                setTimeout(() => {
+                    loadingDiv.style.display = 'none';
+                    // Simulate success
+                    ratesDiv.innerHTML = '<h2>Current Rate: $800 CLP</h2>';
+                }, 2000);
+            }
+
+            // Fetch rates on load
+            fetchDollarRates();
+        });
+    </script>
 </body>
 </html>
